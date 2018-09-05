@@ -12,9 +12,10 @@ namespace projLivrosLista
         private int tompo;
         private List<Emprestimo> emprestimos;
 
-        // Propriedades
+        /* Propriedades
         public int Tompo { get => tompo; set => tompo = value; }
         public List<Emprestimo> Emprestimos { get => emprestimos; set => emprestimos = value; }
+        */
 
         // Métodos
 

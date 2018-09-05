@@ -12,10 +12,11 @@ namespace projLivrosLista
         private DateTime dtEmprestimo;
         private DateTime dtDevolucao;
 
-        //Propriedades
+        /*
+        // Propriedades
         public DateTime DtEmprestimo { get => dtEmprestimo; set => dtEmprestimo = value; }
         public DateTime DtDevolucao { get => dtDevolucao; set => dtDevolucao = value; }
-            
+        */   
     }
 }
 

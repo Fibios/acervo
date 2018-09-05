@@ -11,13 +11,14 @@ namespace projLivrosLista
         // Atributos
         private List<Livro> acervo;
 
-        // Propriedades
+        /* Propriedades
         public List<Livro> Acervo { get => acervo; set => acervo = value; }
+        */
 
         //Métodos
         public void adicionar(Livros livro) {
             Exemplar l = new Exemplar();
-            l.
+            
 
         }
         public Livros pesquisar(Livros livro) {
