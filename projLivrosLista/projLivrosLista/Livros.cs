@@ -16,6 +16,8 @@ namespace projLivrosLista
 
         //Métodos
         public void adicionar(Livros livro) {
+            Exemplar l = new Exemplar();
+            l.
 
         }
         public Livros pesquisar(Livros livro) {
