@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace projLivrosLista
 {
-    class Exemplar : Livro
+    public class Exemplar
     {
         // Atributos
-        private int tompo;
+        private int tombo;
         private List<Emprestimo> emprestimos;
 
         Exemplar(int tompo):base () { this.tompo = tompo; }
@@ -19,17 +19,33 @@ namespace projLivrosLista
         public List<Emprestimo> Emprestimos { get => emprestimos; set => emprestimos = value; }
         */
 
+        // Construtores
+
+        public Exemplar() {
+        }
+
+        public Exemplar(int tombo) {
+            this.tombo = tombo;
+        }
+
         // Métodos
 
+        
+
         public bool emprestar() {
+            
+            Emprestimo emprestimo = new Emprestimo();
+            emprestimos.Add(emprestimo);
             return true;
         }
         public bool devolver()
         {
+            
             return true;
         }
         public bool disponivel()
         {
+
             return true;
         }
         public int qtdeEmprestimos() {
