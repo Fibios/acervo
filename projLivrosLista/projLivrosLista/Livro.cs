@@ -12,12 +12,40 @@ namespace projLivrosLista
         private string titulo, autor, editora;
         List <Exemplar> exemplares;
 
-        //public void adicionarExemplar (Exemplar exemplar) { }
-        public int qtdeExemplares() { return 1; }
-        public int qtdeDisponiveis() { return 1; }
-        public int qtdeEmprestimos() { return 1; }
+        public void adicionarExemplar (Exemplar exemplar)
+        {
+            exemplares.Add(exemplar);
+        }
+        public int qtdeExemplares()
+        {
+            return exemplares.Count();
+        }
+        public int qtdeDisponiveis()
+        {
+            int contar = 0 ;
+            foreach (Exemplar exemplar in exemplares)
+            {
+                if (exemplar.disponivel())
+                {
+                    contar++;
+                }
+            }
+            return contar;
+        }
+        public int qtdeEmprestimos()
+        {
+            int total = 0;
+            foreach (Exemplar exemplar in exemplares)
+            {
+                total += exemplar.qtdeEmprestimos();
+            }
+            return total;
+        }
 
-        public double percDisponibilidade() { return 1; }
+        public double percDisponibilidade()
+        {
+             return (qtdeDisponiveis() / exemplares.Count())*100;
+        }
 
     }
 }
