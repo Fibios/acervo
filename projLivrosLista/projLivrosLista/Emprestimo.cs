@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace projLivrosLista
 {
-    class Emprestimo
+    public class Emprestimo
     {
         // Atributos
         private DateTime dtEmprestimo;
@@ -16,7 +16,18 @@ namespace projLivrosLista
         // Propriedades
         public DateTime DtEmprestimo { get => dtEmprestimo; set => dtEmprestimo = value; }
         public DateTime DtDevolucao { get => dtDevolucao; set => dtDevolucao = value; }
-        */   
+        */
+
+        // Construtores
+
+        public Emprestimo()
+        {
+        }
+
+        public Emprestimo(DateTime dtEmprestimo) {
+            this.dtEmprestimo = dtEmprestimo; ;
+            this.dtDevolucao = dtEmprestimo.AddDays(7);
+        }
     }
 }
 

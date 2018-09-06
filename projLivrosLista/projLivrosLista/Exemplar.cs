@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace projLivrosLista
 {
-    class Exemplar
+    public class Exemplar
     {
         // Atributos
         private int tompo;
@@ -17,13 +17,25 @@ namespace projLivrosLista
         public List<Emprestimo> Emprestimos { get => emprestimos; set => emprestimos = value; }
         */
 
+        // Construtores
+
+        public Exemplar() {
+        }
+
+        public Exemplar(int tombo, List<Emprestimo> emprestimos) {
+        }
+
         // Métodos
 
         public bool emprestar() {
+
+            Emprestimo emprestimo = new Emprestimo(DateTime.Now);
+            emprestimos.Add(emprestimo);
             return true;
         }
         public bool devolver()
         {
+
             return true;
         }
         public bool disponivel()
