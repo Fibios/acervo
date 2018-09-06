@@ -10,19 +10,31 @@ namespace projLivrosLista
     {
         // Atributos
         private List<Livro> acervo;
+        Exemplar l;
 
         /* Propriedades
         public List<Livro> Acervo { get => acervo; set => acervo = value; }
         */
 
         //Métodos
-        public void adicionar(Livros livro) {
-            Exemplar l = new Exemplar();
+        public void adicionar(Livro livro)
+        { 
+            acervo.Add(livro);
             
 
         }
-        public Livros pesquisar(Livros livro) {
-            return livro;
+        public Livro pesquisar(Livro l)
+        {
+            Livro livroAchado = null;
+            foreach (Livro livro in this.acervo)
+            {
+                if (livro.Equals(l))
+                {
+                    livroAchado = livro;
+                }
+            }
+            return livroAchado;
         }
+
     }
 }

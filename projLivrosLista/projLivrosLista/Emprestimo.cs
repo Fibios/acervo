@@ -10,7 +10,7 @@ namespace projLivrosLista
     {
         // Atributos
         private DateTime dtEmprestimo;
-        private DateTime dtDevolucao;
+        private DateTime dtDevolucao = DateTime.MinValue;
 
         /*
         // Propriedades
@@ -22,8 +22,18 @@ namespace projLivrosLista
 
         public Emprestimo() {
             this.dtEmprestimo = DateTime.Now; ;
-            this.dtDevolucao = dtEmprestimo.AddDays(7);
         }
+        //atributos
+        public DateTime getdtDevolucao()
+        {
+            return this.dtDevolucao;
+        }
+        public void setDtDevolucao (DateTime dt)
+        {
+            this.dtDevolucao = dt;
+        }
+
+
     }
 }
 

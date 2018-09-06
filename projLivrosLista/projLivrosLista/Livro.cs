@@ -6,20 +6,35 @@ using System.Threading.Tasks;
 
 namespace projLivrosLista
 {
-    class Livro
+    public class Livro
     {
         private int isbn;
         private string titulo, autor, editora;
         List <Exemplar> exemplares;
         //construtores
-        Livro (int isbn, string titulo, string autor, string editora )
+        public Livro (int isbn, string titulo, string autor, string editora )
         {
             this.isbn = isbn;
             this.titulo = titulo;
             this.autor = autor;
             this.editora = editora;
         }
-        Livro():this(0, "", "", "") { }
+        public Livro() { }
+        public string dados()
+        {
+            string dados = ("ISBN: " + isbn + " Titulo: " + titulo + " Autor: " + autor + "Editora: " + editora);
+            return dados + qtdeExemplares() + qtdeDisponiveis()+ qtdeEmprestimos() + percDisponibilidade();
+        }
+        public string dados2()
+        {
+            string str = dados()+"\n";
+            foreach (Exemplar exemplar in exemplares)
+            {
+                str += "\n"+ exemplar.getTombo();
+                str += "\n" + exemplar.qtdeEmprestimos()+"\n";
+            }
+            return str;
+        }
        
 
         public void adicionarExemplar (Exemplar exemplar)
@@ -56,6 +71,12 @@ namespace projLivrosLista
         {
              return (qtdeDisponiveis() / exemplares.Count())*100;
         }
-
+        #region Sobreescritas
+        public override bool Equals(object obj)
+        {
+            Livro c = (Livro)obj;
+            return this.isbn.Equals(c.isbn);
+        }
+        #endregion
     }
 }

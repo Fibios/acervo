@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace projLivrosLista
 {
-    public class Exemplar
+    public class Exemplar : Livro
     {
         // Atributos
-        private int tombo;
+        private int tombo = 0;
         private List<Emprestimo> emprestimos;
+        Emprestimo emprestimo;
 
-        Exemplar(int tompo):base () { this.tompo = tompo; }
 
         /* Propriedades
         public int Tompo { get => tompo; set => tompo = value; }
@@ -21,37 +21,94 @@ namespace projLivrosLista
 
         // Construtores
 
+        /*Saulo
         public Exemplar() {
+            tombo++;
+        }*/
+
+        // Bruno
+        
+        
+        public Exemplar(int tombo):base()
+        {
+            
+        }
+        public Exemplar(Livro l , int tombo) : base()
+        {
+            super() = l;
+
+        }
+            
+        //atributos
+        public int getTombo()
+        {
+            return this.tombo;
         }
 
-        public Exemplar(int tombo) {
-            this.tombo = tombo;
-        }
 
         // Métodos
 
-        
+        public bool emprestar()
+        {
+            // Bruno
+            if (disponivel())
+            {
+                emprestimo = new Emprestimo();
+                emprestimos.Add(emprestimo);
+                return true;
+            }
+            else return false;
 
-        public bool emprestar() {
-            
-            Emprestimo emprestimo = new Emprestimo();
-            emprestimos.Add(emprestimo);
-            return true;
+            /*Saulo
+            try
+            {
+                emprestimo.dtEmprestimo = DateTime.Now;
+                emprestimos.Add(emprestimo);
+                return true;
+            }
+            catch {return false;}     */
         }
         public bool devolver()
         {
-            
-            return true;
+            // Bruno
+            if (disponivel())
+            {
+                emprestimos[emprestimos.Count() - 1].setDtDevolucao(DateTime.Now);
+                return true;
+            }
+            else return false;
+
+            /* Saulo
+            try
+            {
+                emprestimo.dtDevolucao = DateTime.Now;
+                DateTime tempEmprestimo = emprestimos.Last().dtEmprestimo;
+                emprestimos.RemoveAt(emprestimos.IndexOf(emprestimo));
+                emprestimos.Add(emprestimo);
+                return true;
+            }
+            catch { return false; }   */
         }
         public bool disponivel()
         {
+            if (emprestimos[emprestimos.Count() - 1].getdtDevolucao().Equals(DateTime.MinValue))
+            {
+                return false;
+            }
+            else return true;
 
-            return true;
         }
-        public int qtdeEmprestimos() {
-            return 0;
+        public int qtdeEmprestimos()
+        {
+            return emprestimos.Count();
         }
-
+        #region Sobreescritas
+        public override bool Equals(object obj)
+        {
+            Exemplar e = (Exemplar)obj;
+            return this.tombo.Equals(e.tombo);
+        }
+        #endregion
 
     }
 }
