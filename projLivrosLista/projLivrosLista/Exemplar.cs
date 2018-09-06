@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 
 namespace projLivrosLista
 {
-    class Exemplar
+    class Exemplar : Livro
     {
         // Atributos
         private int tompo;
         private List<Emprestimo> emprestimos;
+
+        Exemplar(int tompo):base () { this.tompo = tompo; }
 
         /* Propriedades
         public int Tompo { get => tompo; set => tompo = value; }
