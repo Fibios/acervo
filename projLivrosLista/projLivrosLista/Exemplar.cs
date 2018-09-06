@@ -9,7 +9,7 @@ namespace projLivrosLista
     public class Exemplar
     {
         // Atributos
-        private int tompo;
+        private int tombo;
         private List<Emprestimo> emprestimos;
 
         /* Propriedades
@@ -27,9 +27,10 @@ namespace projLivrosLista
 
         // Métodos
 
-        public bool emprestar() {
+        
 
-            Emprestimo emprestimo = new Emprestimo(DateTime.Now);
+        public bool emprestar() {
+            Emprestimo emprestimo = new Emprestimo();
             emprestimos.Add(emprestimo);
             return true;
         }

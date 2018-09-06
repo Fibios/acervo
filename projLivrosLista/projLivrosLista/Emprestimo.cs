@@ -20,12 +20,8 @@ namespace projLivrosLista
 
         // Construtores
 
-        public Emprestimo()
-        {
-        }
-
-        public Emprestimo(DateTime dtEmprestimo) {
-            this.dtEmprestimo = dtEmprestimo; ;
+        public Emprestimo() {
+            this.dtEmprestimo = DateTime.Now; ;
             this.dtDevolucao = dtEmprestimo.AddDays(7);
         }
     }
