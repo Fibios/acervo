@@ -12,6 +12,8 @@ namespace projLivrosLista
         private int tombo;
         private List<Emprestimo> emprestimos;
 
+        Exemplar(int tompo):base () { this.tompo = tompo; }
+
         /* Propriedades
         public int Tompo { get => tompo; set => tompo = value; }
         public List<Emprestimo> Emprestimos { get => emprestimos; set => emprestimos = value; }

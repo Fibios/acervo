@@ -11,6 +11,16 @@ namespace projLivrosLista
         private int isbn;
         private string titulo, autor, editora;
         List <Exemplar> exemplares;
+        //construtores
+        Livro (int isbn, string titulo, string autor, string editora )
+        {
+            this.isbn = isbn;
+            this.titulo = titulo;
+            this.autor = autor;
+            this.editora = editora;
+        }
+        Livro():this(0, "", "", "") { }
+       
 
         public void adicionarExemplar (Exemplar exemplar)
         {
