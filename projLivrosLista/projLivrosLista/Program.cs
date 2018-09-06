@@ -10,14 +10,14 @@ namespace projLivrosLista
         Bruno de Oliveira Silva */
     class Program
     {
+        //inicializando variaveis e classes
+
         static Livros acervo = new Livros();
+        static Livro livro;
         static void Main(string[] args)
         {
-            //inicializando variaveis e classes
-            Exemplar exemplar = new Exemplar();
-            
-            Emprestimo emprestimo = new Emprestimo();
-            static Livro livro;
+           
+           
             int opcao = 0;
             do
             {
@@ -29,6 +29,7 @@ namespace projLivrosLista
                 Console.WriteLine("5.Registrar empréstimo");
                 Console.WriteLine("6.Registrar devolução");
                 opcao = int.Parse(Console.ReadLine());
+                Console.Clear();
 
                 switch (opcao)
                 {
@@ -36,7 +37,7 @@ namespace projLivrosLista
                     case 2: pesquisarLivroSintetico(); break;
                     case 3: pesquisarLivroAnalitica(); break;
                     case 4: adicionarExemplar(); break;
-                    case 5: registrarEmprestimo(); break;
+                   // case 5: registrarEmprestimo(); break;
                     case 6: registrarDevolucao(); break;
                 }
 
@@ -79,13 +80,16 @@ namespace projLivrosLista
             isbn = int.Parse(Console.ReadLine());
             Livro livro = new Livro(isbn, "", "", "");
             livro = acervo.pesquisar(livro);
-            Console.WriteLine("{0}", livro.dados()+livro.);
+            Console.WriteLine("{0}", livro.dados2());
         }
         static public void adicionarExemplar()
         {
-            Console.WriteLine("Tombo: ");
+            Console.WriteLine("Adicionar Exemplar \n ________________");
+            Console.WriteLine("Digite o ISBN do Livro que deseja: ");
+            int isbn = int.Parse(Console.ReadLine());
+            Console.WriteLine("Digite o tombo do Exemplar: ");
             int tombo = int.Parse(Console.ReadLine());
-        }
+                   }
         static public void registrarEmprestimo()
         {
             int  tombo;
@@ -95,7 +99,6 @@ namespace projLivrosLista
             livro = acervo.pesquisar();
             
         }
-
         static public void registrarDevolucao()
         {
 

@@ -9,7 +9,7 @@ namespace projLivrosLista
     class Livros
     {
         // Atributos
-        private List<Livro> acervo;
+        private List<Livro> acervo = new List<Livro>();
         Exemplar l;
 
         /* Propriedades

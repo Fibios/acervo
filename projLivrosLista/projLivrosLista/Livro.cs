@@ -10,7 +10,7 @@ namespace projLivrosLista
     {
         private int isbn;
         private string titulo, autor, editora;
-        List <Exemplar> exemplares;
+        List<Exemplar> exemplares = new List<Exemplar>();
         //construtores
         public Livro (int isbn, string titulo, string autor, string editora )
         {
@@ -69,7 +69,15 @@ namespace projLivrosLista
 
         public double percDisponibilidade()
         {
-             return (qtdeDisponiveis() / exemplares.Count())*100;
+            try
+            {
+                return qtdeDisponiveis() / exemplares.Count() * 100;
+            }
+
+            catch
+            {
+                return -1;
+            }
         }
         #region Sobreescritas
         public override bool Equals(object obj)
