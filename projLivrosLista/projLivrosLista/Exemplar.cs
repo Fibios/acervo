@@ -22,7 +22,8 @@ namespace projLivrosLista
         public Exemplar() {
         }
 
-        public Exemplar(int tombo, List<Emprestimo> emprestimos) {
+        public Exemplar(int tombo) {
+            this.tombo = tombo;
         }
 
         // Métodos
@@ -30,17 +31,19 @@ namespace projLivrosLista
         
 
         public bool emprestar() {
+            
             Emprestimo emprestimo = new Emprestimo();
             emprestimos.Add(emprestimo);
             return true;
         }
         public bool devolver()
         {
-
+            
             return true;
         }
         public bool disponivel()
         {
+
             return true;
         }
         public int qtdeEmprestimos() {
