@@ -19,7 +19,12 @@ namespace projLivrosLista
             this.autor = autor;
             this.editora = editora;
         }
+        public Livro(isbn)
+        {
+            this.isbn = isbn;
+        }
         public Livro() { }
+
         public string dados()
         {
             string dados = ("ISBN: " + isbn + " Titulo: " + titulo + " Autor: " + autor + "Editora: " + editora);

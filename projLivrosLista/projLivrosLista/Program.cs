@@ -84,19 +84,22 @@ namespace projLivrosLista
         }
         static public void adicionarExemplar()
         {
+            Livro livro = new Livro(isbn);
             Console.WriteLine("Adicionar Exemplar \n ________________");
             Console.WriteLine("Digite o ISBN do Livro que deseja: ");
             int isbn = int.Parse(Console.ReadLine());
+            
             Console.WriteLine("Digite o tombo do Exemplar: ");
             int tombo = int.Parse(Console.ReadLine());
-                   }
+            Exemplar exemplar = new Exemplar(tombo);
+            acervo.pesquisar(livro).adicionarExemplar(exemplar);
+        }
         static public void registrarEmprestimo()
         {
             int  tombo;
             Console.WriteLine("Digite o número do Tombo do Livro que deseja emprestar: ");
             tombo = int.Parse(Console.ReadLine());
             Exemplar exemplar = new Exemplar(isbn, "", "", "");
-            livro = acervo.pesquisar();
             
         }
         static public void registrarDevolucao()
