@@ -10,20 +10,22 @@ namespace projLivrosLista
     {
         private int isbn;
         private string titulo, autor, editora;
-        List<Exemplar> exemplares = new List<Exemplar>();
+        List<Exemplar> exemplares;
+
         //construtores
-        public Livro (int isbn, string titulo, string autor, string editora )
+        public Livro(int isbn, string titulo, string autor, string editora)
         {
             this.isbn = isbn;
             this.titulo = titulo;
             this.autor = autor;
             this.editora = editora;
+            this.exemplares = new List<Exemplar>();
         }
-        public Livro(isbn)
+        public Livro() : this(0, "", "", "")
         {
-            this.isbn = isbn;
         }
-        public Livro() { }
+
+
 
         public string dados()
         {
