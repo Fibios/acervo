@@ -46,7 +46,11 @@ namespace projLivrosLista
         }
         public bool disponivel()
         {
-            if (emprestimos[emprestimos.Count() - 1].getdtDevolucao().Equals(DateTime.MinValue))
+            if (emprestimos.Count() == 0)
+            {
+                return true;
+            }
+            else if (emprestimos[emprestimos.Count() - 1].getdtDevolucao().Equals(DateTime.MinValue))
             {
                 return false;
             }

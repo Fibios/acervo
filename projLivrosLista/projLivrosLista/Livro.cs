@@ -36,8 +36,8 @@ namespace projLivrosLista
 
         public string dados()
         {
-            string dados = ("ISBN: " + isbn + " Titulo: " + titulo + " Autor: " + autor + "Editora: " + editora);
-            return dados + qtdeExemplares() + qtdeDisponiveis()+ qtdeEmprestimos() + percDisponibilidade();
+            string dados = ("ISBN: " + isbn + " | Titulo: " + titulo + " | Autor: " + autor + " | Editora: " + editora);
+            return dados +" \nTotal de Exemplares: "+ qtdeExemplares() +" | Quantidade disponível: "+ qtdeDisponiveis()+"\nQuantidade de empréstimos "+ qtdeEmprestimos()+" | Percentual de disponibilidade: " + percDisponibilidade()+"%";
         }
         public string dados2()
         {
@@ -90,7 +90,7 @@ namespace projLivrosLista
 
             catch
             {
-                return -1;
+                return 0;
             }
         }
         public Exemplar pesquisar(Exemplar e)
