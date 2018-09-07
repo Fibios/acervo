@@ -8,20 +8,18 @@ namespace projLivrosLista
 {
     class Livros
     {
+
         // Atributos
-        private List<Livro> acervo = new List<Livro>();
-        Exemplar l;
-
-        /* Propriedades
-        public List<Livro> Acervo { get => acervo; set => acervo = value; }
-        */
-
+        private List<Livro> acervo;
+        public Livros()
+        {
+            acervo = new List<Livro>();
+        }
+        
         //Métodos
         public void adicionar(Livro livro)
         { 
             acervo.Add(livro);
-            
-
         }
         public Livro pesquisar(Livro l)
         {

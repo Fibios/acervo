@@ -11,6 +11,10 @@ namespace projLivrosLista
         private int isbn;
         private string titulo, autor, editora;
         List<Exemplar> exemplares;
+        public List<Exemplar> listaExemplares()
+        {
+            return exemplares;
+        }
 
         //construtores
         public Livro(int isbn, string titulo, string autor, string editora)
@@ -22,6 +26,9 @@ namespace projLivrosLista
             this.exemplares = new List<Exemplar>();
         }
         public Livro() : this(0, "", "", "")
+        {
+        }
+        public Livro(int isbn):this(isbn,"","","")
         {
         }
 
@@ -85,6 +92,18 @@ namespace projLivrosLista
             {
                 return -1;
             }
+        }
+        public Exemplar pesquisar(Exemplar e)
+        {
+            Exemplar exemplarAchado = null;
+            foreach (Exemplar exemplar in this.exemplares)
+            {
+                if (exemplar.Equals(e))
+                {
+                    exemplarAchado = exemplar;
+                }
+            }
+            return exemplarAchado;
         }
         #region Sobreescritas
         public override bool Equals(object obj)

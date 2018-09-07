@@ -10,11 +10,12 @@ namespace projLivrosLista
     {
         // Atributos
         private int tombo;
-        private List<Emprestimo> emprestimos = new List<Emprestimo>();
+        private List<Emprestimo> emprestimos;
         Emprestimo emprestimo;
         public Exemplar(int tombo)
         {
             this.tombo = tombo;
+            emprestimos = new List<Emprestimo>();
         }
      
         //atributos
