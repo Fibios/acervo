@@ -109,11 +109,12 @@ namespace projLivrosLista
             int  tombo, isbn;
             Console.WriteLine("Empréstimo de Livros \n _________________");
             Console.WriteLine("\nDigite o ISBN do Livro: ");
-            isbn = int.Parse(Console.ReadLine());    
-                 
+            isbn = int.Parse(Console.ReadLine());
+            livro = new Livro(isbn);
+            acervo.pesquisar(livro);
             Console.WriteLine("\nDigite qual o Tombo do Exemplar? \n Tombo: ");
             tombo = int.Parse(Console.ReadLine());
-            livro = new Livro(isbn);
+            
 
             Exemplar exemplar = new Exemplar(tombo);
 
