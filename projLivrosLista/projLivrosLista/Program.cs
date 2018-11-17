@@ -21,6 +21,7 @@ namespace projLivrosLista
             int opcao = 0;
             do
             {
+                Console.Clear();
                 Console.WriteLine("0. Sair");
                 Console.WriteLine("1.Adicionar livro");
                 Console.WriteLine("2.Pesquisar livro(sintético)");
@@ -74,6 +75,7 @@ namespace projLivrosLista
 
             if (livro!=null)
                 Console.WriteLine(livro.dados());
+            Console.ReadKey();
         }
         static public void pesquisarLivroAnalitica()
         {
@@ -83,6 +85,7 @@ namespace projLivrosLista
             livro = new Livro(isbn);
             livro = acervo.pesquisar(livro);
             Console.WriteLine(livro.dados2());
+            Console.ReadKey();
         }
         static public void adicionarExemplar()
         {
@@ -101,37 +104,39 @@ namespace projLivrosLista
             else {
                 Console.Clear();
                 Console.WriteLine("Livro não encontrado!\n");
-                adicionarExemplar();
             }
+            Console.ReadKey();
         }
         static public void registrarEmprestimo()
         {
             int  tombo, isbn;
             Console.WriteLine("Empréstimo de Livros \n _________________");
             Console.WriteLine("\nDigite o ISBN do Livro: ");
-            isbn = int.Parse(Console.ReadLine());
-            livro = new Livro(isbn);
-            acervo.pesquisar(livro);
+            isbn = int.Parse(Console.ReadLine());    
+                 
             Console.WriteLine("\nDigite qual o Tombo do Exemplar? \n Tombo: ");
             tombo = int.Parse(Console.ReadLine());
-<<<<<<< HEAD
-            
-=======
-            livro = new Livro(isbn);
->>>>>>> parent of ab2beff... Alterado View para registro de exemplar.
-
-            Exemplar exemplar = new Exemplar(tombo);
-
-            if (acervo.pesquisar(livro).listaExemplares().Equals(exemplar))
+            livro = acervo.pesquisar( new Livro(isbn));
+            if (livro != null)
             {
-                livro = acervo.pesquisar(livro);
-                exemplar = livro.pesquisar(exemplar);
-                exemplar.emprestar();
-                Console.WriteLine("Livro {0} \n emprestado",livro.dados());
-            }
-            else Console.WriteLine("Exemplar não encontrado");
-        }
+                Exemplar exemplar = new Exemplar(tombo);
 
+                if (acervo.pesquisar(livro).listaExemplares().Equals(exemplar))
+                {
+                    livro = acervo.pesquisar(livro);
+                    exemplar = livro.pesquisar(exemplar);
+                    exemplar.emprestar();
+                    Console.WriteLine("Livro {0} \n emprestado com sucesso", livro.dados());
+                }
+                else Console.WriteLine("Exemplar não encontrado");
+            }
+            else
+            {
+                Console.Clear();
+                Console.WriteLine("Livro não existe no acervo");
+            }
+            Console.ReadKey();
+        }
         static public void registrarDevolucao()
         {
             int tombo, isbn;
