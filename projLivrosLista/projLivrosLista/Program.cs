@@ -114,11 +114,7 @@ namespace projLivrosLista
             acervo.pesquisar(livro);
             Console.WriteLine("\nDigite qual o Tombo do Exemplar? \n Tombo: ");
             tombo = int.Parse(Console.ReadLine());
-<<<<<<< HEAD
             
-=======
-            livro = new Livro(isbn);
->>>>>>> parent of ab2beff... Alterado View para registro de exemplar.
 
             Exemplar exemplar = new Exemplar(tombo);
 
