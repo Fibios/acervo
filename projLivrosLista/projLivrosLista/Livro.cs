@@ -44,8 +44,8 @@ namespace projLivrosLista
             string str = dados()+"\n";
             foreach (Exemplar exemplar in exemplares)
             {
-                str += "\n"+ exemplar.getTombo();
-                str += "\n" + exemplar.qtdeEmprestimos()+"\n";
+                str += "\n Exemplar: "+ exemplar.getTombo();
+                str += "\n Emprestado: {0} Vezes " + exemplar.qtdeEmprestimos()+"\n";
             }
             return str;
         }

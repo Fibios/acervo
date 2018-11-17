@@ -44,6 +44,10 @@ namespace projLivrosLista
             }
             else return false;
         }
+        /// <summary>
+        /// Função que verifica a disponibilidade do exemplar
+        /// </summary>
+        /// <returns>Retorna se ta disponível ou não</returns>
         public bool disponivel()
         {
             if (emprestimos.Count() == 0)
