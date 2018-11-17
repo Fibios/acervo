@@ -18,7 +18,7 @@ namespace projLivrosLista
         {
             acervo = new Livros();
 
-            int opcao = 0;
+            int opcao = 10;
             do
             {
                 Console.Clear();
@@ -29,9 +29,12 @@ namespace projLivrosLista
                 Console.WriteLine("4.Adicionar exemplar");
                 Console.WriteLine("5.Registrar empréstimo");
                 Console.WriteLine("6.Registrar devolução");
-                opcao = int.Parse(Console.ReadLine());
-                Console.Clear();
 
+                try
+                { opcao = int.Parse(Console.ReadLine()); }
+                catch { continue; };
+
+                Console.Clear();
                 switch (opcao)
                 {
                     case 1: adicionarLivro(); break;
@@ -41,13 +44,9 @@ namespace projLivrosLista
                     case 5: registrarEmprestimo(); break;
                     case 6: registrarDevolucao(); break;
                 }
-
-
             } while (opcao != 0);
-
-
-            Console.ReadKey();
         }
+
         static public void adicionarLivro()
         {
             int isbn;
@@ -55,15 +54,24 @@ namespace projLivrosLista
             Console.WriteLine("Dados do Livro que deseja adicionar");
             Console.WriteLine("ISBN: ");
             isbn = int.Parse(Console.ReadLine());
-            Console.WriteLine("Título: ");
-            titulo = Console.ReadLine();
-            Console.WriteLine("Autor: ");
-            autor = Console.ReadLine();
-            Console.WriteLine("Editora: ");
-            editora = Console.ReadLine();
 
-            Livro livro = new Livro (isbn, titulo, autor, editora);
-            acervo.adicionar(livro);
+            livro = new Livro(isbn);
+            if (acervo.pesquisar(livro) == null)
+            {
+                Console.WriteLine("Título: ");
+                titulo = Console.ReadLine();
+                Console.WriteLine("Autor: ");
+                autor = Console.ReadLine();
+                Console.WriteLine("Editora: ");
+                editora = Console.ReadLine();
+                livro = new Livro(isbn, titulo, autor, editora);
+                acervo.adicionar(livro);
+                Console.WriteLine("Livro " + titulo + " | Adicionado com sucesso!");
+            }
+            else
+                Console.WriteLine("ISBN já existente no acervo");
+            Console.ReadKey();
+
         }
         static public void pesquisarLivroSintetico()
         {
@@ -73,8 +81,9 @@ namespace projLivrosLista
             livro = new Livro(isbn);
             livro = acervo.pesquisar(livro);
 
-            if (livro!=null)
+            if (livro != null)
                 Console.WriteLine(livro.dados());
+            else Console.WriteLine("Livro não encontrado no acervo (ISBN)");
             Console.ReadKey();
         }
         static public void pesquisarLivroAnalitica()
@@ -84,7 +93,12 @@ namespace projLivrosLista
             isbn = int.Parse(Console.ReadLine());
             livro = new Livro(isbn);
             livro = acervo.pesquisar(livro);
-            Console.WriteLine(livro.dados2());
+            if (livro != null)
+            {
+                Console.WriteLine(livro.dados2());
+            }
+            else
+                Console.WriteLine("Livro não encontrado no acervo (ISBN)");
             Console.ReadKey();
         }
         static public void adicionarExemplar()
@@ -94,14 +108,15 @@ namespace projLivrosLista
             int isbn = int.Parse(Console.ReadLine());
             livro = new Livro(isbn);
 
-            if (acervo.pesquisar(livro)!= null)
+            if (acervo.pesquisar(livro) != null)
             {
                 Console.WriteLine("Digite o tombo do Exemplar: ");
                 int tombo = int.Parse(Console.ReadLine());
                 Exemplar exemplar = new Exemplar(tombo);
                 acervo.pesquisar(livro).adicionarExemplar(exemplar);
             }
-            else {
+            else
+            {
                 Console.Clear();
                 Console.WriteLine("Livro não encontrado!\n");
             }
@@ -109,24 +124,22 @@ namespace projLivrosLista
         }
         static public void registrarEmprestimo()
         {
-            int  tombo, isbn;
+            int tombo, isbn;
             Console.WriteLine("Empréstimo de Livros \n _________________");
             Console.WriteLine("\nDigite o ISBN do Livro: ");
-            isbn = int.Parse(Console.ReadLine());    
-                 
-            Console.WriteLine("\nDigite qual o Tombo do Exemplar? \n Tombo: ");
+            isbn = int.Parse(Console.ReadLine());
+            Console.WriteLine("\nDigite qual o Tombo do Exemplar? \nTombo: ");
             tombo = int.Parse(Console.ReadLine());
-            livro = acervo.pesquisar( new Livro(isbn));
+
+            livro = acervo.pesquisar(new Livro(isbn));
             if (livro != null)
             {
                 Exemplar exemplar = new Exemplar(tombo);
-
-                if (acervo.pesquisar(livro).listaExemplares().Equals(exemplar))
+                exemplar = livro.pesquisar(exemplar);
+                if (exemplar != null)
                 {
-                    livro = acervo.pesquisar(livro);
-                    exemplar = livro.pesquisar(exemplar);
-                    exemplar.emprestar();
-                    Console.WriteLine("Livro {0} \n emprestado com sucesso", livro.dados());
+                    if (exemplar.emprestar())
+                        Console.WriteLine("Livro emprestado com sucesso!");
                 }
                 else Console.WriteLine("Exemplar não encontrado");
             }
@@ -140,23 +153,30 @@ namespace projLivrosLista
         static public void registrarDevolucao()
         {
             int tombo, isbn;
-            Console.WriteLine("Devolução de Livro: \n __________________");
+            Console.WriteLine("Devolução de Livros \n _________________");
             Console.WriteLine("\nDigite o ISBN do Livro: ");
             isbn = int.Parse(Console.ReadLine());
-            livro = new Livro(isbn);
-
-            Console.WriteLine("\nDigite qual o Tombo do Exemplar? \n Tombo: ");
+            Console.WriteLine("\nDigite qual o Tombo do Exemplar? \nTombo: ");
             tombo = int.Parse(Console.ReadLine());
-            Exemplar exemplar = new Exemplar(tombo);
 
-            if (acervo.pesquisar(livro).listaExemplares().Equals(exemplar))
+            livro = acervo.pesquisar(new Livro(isbn));
+            if (livro != null)
             {
-                livro = acervo.pesquisar(livro);
+                Exemplar exemplar = new Exemplar(tombo);
                 exemplar = livro.pesquisar(exemplar);
-                exemplar.devolver();
-                Console.WriteLine("Livro {0} \n devolvido", livro.dados2());
+
+                if (exemplar.devolver())
+                {
+                    Console.WriteLine("Livro devolvido com sucesso!");
+                }
+                else Console.WriteLine("Exemplar não encontrado");
             }
-            else Console.WriteLine("Exemplar não encontrado");
+            else
+            {
+                Console.Clear();
+                Console.WriteLine("Livro não existe no acervo");
+            }
+            Console.ReadKey();
         }
     }
 }

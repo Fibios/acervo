@@ -12,17 +12,15 @@ namespace projLivrosLista
         private int tombo;
         private List<Emprestimo> emprestimos;
         Emprestimo emprestimo;
+
         public Exemplar(int tombo)
         {
             this.tombo = tombo;
             emprestimos = new List<Emprestimo>();
         }
-     
+
         //atributos
-        public int getTombo()
-        {
-            return this.tombo;
-        }
+        public int Tombo {get{ return this.tombo; } }
         // Métodos
 
         public bool emprestar()
@@ -37,27 +35,19 @@ namespace projLivrosLista
         }
         public bool devolver()
         {
-            if (disponivel())
+            if (!disponivel())
             {
-                emprestimos[emprestimos.Count() - 1].setDtDevolucao(DateTime.Now);
+                emprestimos[emprestimos.Count() - 1].Dtdevolucao = DateTime.Now;
                 return true;
             }
             else return false;
         }
-        /// <summary>
-        /// Função que verifica a disponibilidade do exemplar
-        /// </summary>
-        /// <returns>Retorna se ta disponível ou não</returns>
         public bool disponivel()
         {
             if (emprestimos.Count() == 0)
-            {
                 return true;
-            }
-            else if (emprestimos[emprestimos.Count() - 1].getdtDevolucao().Equals(DateTime.MinValue))
-            {
+            else if (emprestimos[emprestimos.Count() - 1].Dtdevolucao == DateTime.MinValue)
                 return false;
-            }
             else return true;
         }
         public int qtdeEmprestimos()

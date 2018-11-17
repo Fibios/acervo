@@ -10,13 +10,10 @@ namespace projLivrosLista
     {
         private int isbn;
         private string titulo, autor, editora;
-        List<Exemplar> exemplares;
-        public List<Exemplar> listaExemplares()
-        {
-            return exemplares;
-        }
-
-        //construtores
+        private List<Exemplar> exemplares;
+        
+        public List<Exemplar> Exemplares { get { return exemplares; } }
+        #region Construtores
         public Livro(int isbn, string titulo, string autor, string editora)
         {
             this.isbn = isbn;
@@ -28,32 +25,29 @@ namespace projLivrosLista
         public Livro() : this(0, "", "", "")
         {
         }
-        public Livro(int isbn):this(isbn,"","","")
-        {
-        }
-
-
+        public Livro(int isbn):this(isbn,"","",""){}
+        #endregion
 
         public string dados()
         {
             string dados = ("ISBN: " + isbn + " | Titulo: " + titulo + " | Autor: " + autor + " | Editora: " + editora);
-            return dados +" \nTotal de Exemplares: "+ qtdeExemplares() +" | Quantidade disponível: "+ qtdeDisponiveis()+"\nQuantidade de empréstimos "+ qtdeEmprestimos()+" | Percentual de disponibilidade: " + percDisponibilidade()+"%";
+            return dados +" \nTotal de Exemplares: "+ qtdeExemplares() +" | Quantidade disponível: "+ qtdeDisponiveis()+"\nQuantidade de empréstimos: "+ qtdeEmprestimos()+" | Percentual de disponibilidade: " + percDisponibilidade().ToString("0.00")+"%";
         }
         public string dados2()
         {
             string str = dados()+"\n";
             foreach (Exemplar exemplar in exemplares)
             {
-                str += "\n Exemplar: "+ exemplar.getTombo();
-                str += "\n Emprestado: {0} Vezes " + exemplar.qtdeEmprestimos()+"\n";
+                str += "\n Exemplar tombo: "+ exemplar.Tombo;
+                str += "\n Emprestado:" + exemplar.qtdeEmprestimos()+ " vezes\n";
             }
             return str;
         }
-       
 
         public void adicionarExemplar (Exemplar exemplar)
         {
-            exemplares.Add(exemplar);
+            if (pesquisar(exemplar) == null)
+                exemplares.Add(exemplar);
         }
         public int qtdeExemplares()
         {
@@ -80,18 +74,16 @@ namespace projLivrosLista
             }
             return total;
         }
-
-        public double percDisponibilidade()
+        public Double percDisponibilidade()
         {
-            try
-            {
-                return qtdeDisponiveis() / exemplares.Count() * 100;
+            Double temp;
+            if (qtdeExemplares() != 0)
+            { 
+                temp = double.Parse( qtdeDisponiveis().ToString()) / double.Parse( qtdeExemplares().ToString())*100;
+                return temp;
             }
-
-            catch
-            {
-                return 0;
-            }
+            return 0;
+           
         }
         public Exemplar pesquisar(Exemplar e)
         {
